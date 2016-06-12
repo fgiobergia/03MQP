@@ -1,0 +1,85 @@
+body {
+    /* remove margins - for header & footer */
+    margin: 0px;
+    font-family: Georgia;
+}
+
+div#main_content {
+    width: 600px;
+    height: auto;
+    margin: 1em auto;
+}
+
+div.banner {
+    text-align: center;
+    background-color: rgb(240,240,240);
+    padding: 1.5em 0px;
+}
+
+div#header {
+    font-size: 2em;
+    font-family: Verdana;
+    color: #555;
+}
+div#footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+form {
+    display: table;
+    width: 100%;
+    margin: 0 auto;
+}
+
+div.form_row {
+    display: table-row;
+    padding: 0.5em 0;
+}
+
+label {
+    display: table-cell;
+    text-align: right;
+}
+
+.form_cell {
+    display: table-cell;
+    margin: 1em 0 1em 2em;
+    padding: 0.3em;
+}
+
+input[type=text].form_cell, input[type=password].form_cell {
+    border-radius: 4px;
+    border: 1px solid rgb(120,120,120);
+}
+
+div.error {
+    border: 1px solid #f88;
+    background-color: rgba(255, 120, 120,0.5);
+    width: 600px;
+    margin: 1em auto;
+    border-radius: 0.7em;
+    padding: 0.5em 2em;
+    text-align: center;
+}
+
+div.success {
+    border: 1px solid #8f8;
+    background-color: rgba(120, 255, 120,0.5);
+    width: 600px;
+    margin: 1em auto;
+    border-radius: 0.7em;
+    padding: 0.5em 2em;
+    text-align: center;
+} 
+
+span#register_link {
+    padding: 0 .5em;
+}
+
+span#register_link a {
+    color: #555;
+}
+
