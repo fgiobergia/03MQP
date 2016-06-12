@@ -10,7 +10,7 @@ function testEmail (email) {
     return reg.test(email);
 }
 
-function email_handler() {
+function emailHandler() {
     var email = $('#email').val();
     if (email.length > 0) {
         if (testEmail(email)) {
@@ -22,5 +22,26 @@ function email_handler() {
     }
     else {
         $('#email').css('border','');
+    }
+}
+
+function validTime (time) {
+    var reg = /^([0-9]{2}):([0-9]{2})$/;
+    var m = time.match(reg);
+    if (m == null) {
+        return false;
+    }
+    var hh = parseInt(m[1]);
+    var mm = parseInt(m[2]);
+
+    return (hh >= 0 && hh <= 23 && mm >= 0 && mm<=59);
+}
+
+function timeHandler () {
+    var time = $('#start_time').val();
+    if (time.length > 0) {
+        if (!validTime(time)) {
+            $('#start_time').val('');
+        }
     }
 }

@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $('#email').keyup(email_handler);
-    $('#email').change(email_handler);
+    $('#email').keyup(emailHandler);
+    $('#email').change(emailHandler);
 
     $('#send').click(function() {
         var email = $('#email').val();

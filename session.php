@@ -1,4 +1,4 @@
-<?
+<?php
 
 $expirationTime = 2*60; // sessions expire in 2 minutes
 

@@ -3,8 +3,8 @@ $(document).ready(function() {
     var greenColor = '#19ff19';
     var borderInfo = '2px solid ';
 
-    $('#email').keyup(email_handler);
-    $('#email').change(email_handler);
+    $('#email').keyup(emailHandler);
+    $('#email').change(emailHandler);
     
 
     $('.password').keyup(function() {

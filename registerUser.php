@@ -13,7 +13,6 @@ $lastName  = sanitize ($_POST['last']);
 $emailAddr = sanitize ($_POST['email']);
 $password1 = hash_password ($emailAddr, $_POST['pass1']);
 $password2 = hash_password ($emailAddr, $_POST['pass2']);
-die($password1);
 /* various conditions are handled differently in 
  * order to ease a possible future decision of 
  * providing a more detailed error message for

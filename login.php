@@ -1,6 +1,12 @@
-<?
+<?php
 
 include 'includes.php';
+
+$session = new Session();
+if ($session->isValid()) {
+    redirect("account.php");
+}
+
 
 $login = sanitize ($_POST['email']);
 $password = hash_password($login, $_POST['pass']);
@@ -14,7 +20,8 @@ if ($res !== false) {
         // login failed!
         die ("Nope");
     }
-    die ("YEAAAH");
+    $session = new Session(true);
+    redirect("account.php");
 }
 
 ?>
