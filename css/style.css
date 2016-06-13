@@ -83,3 +83,29 @@ span#register_link a {
     color: #555;
 }
 
+div#previous_bookings {
+    display: table;
+    width: 100%;
+}
+
+div#head_row span {
+    font-weight: bold;
+    padding: .5em 0;
+    background-color: rgb(240,240,240);
+}
+
+div.list_row {
+    text-align: center;
+    display: table-row;
+    margin: 0px auto;
+}
+
+span.list_cell {
+    display: table-cell;
+}
+
+span.unbook {
+    font-weight: bold;
+    color: #f00;
+    font-family: Courier;
+}

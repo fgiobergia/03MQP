@@ -39,9 +39,9 @@ LIMIT 1";
 $conn->query($query);
 if ($conn->affected_rows == 1) {
     // success!
-    die("WOOW");
+    redirect ("book.php?success");
 }
 else {
-    die($query);
+    redirect ("book.php?overlap");
 }
 ?>
