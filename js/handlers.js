@@ -42,7 +42,7 @@ function emailHandler() {
 }
 
 function validTime (time) {
-    var reg = /^([0-9]{2}):([0-9]{2})$/;
+    var reg = /^(\d{2}):(\d{2})$/;
     var m = time.match(reg);
     if (m == null) {
         return false;

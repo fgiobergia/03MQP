@@ -20,7 +20,7 @@ if ($res !== false) {
         // login failed!
         die ("Nope");
     }
-    $session = new Session(true);
+    $session = new Session(true,$row[0]);
     redirect("book.php");
 }
 

@@ -5,7 +5,7 @@ $expirationTime = 2*60; // sessions expire in 2 minutes
 class Session {
     private $valid;
 
-    public function __construct ($forceNew = false) {
+    public function __construct ($forceNew = false, $uid = -1) {
         global $expirationTime;
         $this->valid = false;
         session_start();
@@ -17,6 +17,11 @@ class Session {
         if ($forceNew == true || (isset ($_SESSION['valid']) && $_SESSION['valid'] == true && isset($_SESSION['expires']) && $_SESSION['expires'] >= time())) {
             $_SESSION['valid'] = true;
             $_SESSION['expires'] = time() + $expirationTime; // renew session expiration time
+
+            // if login time, also store the UId for later retrieval
+            if ($uid != -1) {
+                $_SESSION['uid'] = $uid;
+            }
             $this->valid = true;
         }
         else {
@@ -29,6 +34,14 @@ class Session {
     public function isValid () {
         return $this->valid;
     }
+
+    public function getUId () {
+        if ($this->isValid()) {
+            return intval($_SESSION['uid']);
+        }
+        return -1;
+    }
+
 }
 
 ?>

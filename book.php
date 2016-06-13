@@ -22,6 +22,20 @@ if (!$session->isValid()) {
     <div id = 'header' class = 'banner'>
 <?php echo $websiteName; ?>
     </div>
+<?php
+$msg = '';
+if (isset($_GET['error'])) {
+    $msg = 'Some error occurred!';
+}
+else if (isset($_GET['overlap'])) {
+    $msg = 'Your booking may not be scheduled with the current resources';
+}
+if (!empty ($msg)) {
+?>
+    <div class = 'error'><?php echo $msg; ?></div>
+<?php
+}
+?>
     <div id = 'main_content'>
         <form action = 'bookMachine.php' method = 'POST' id = 'book_form'>
             <div class = 'form_row'>
