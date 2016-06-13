@@ -1,11 +1,11 @@
 <?php
-include 'mysql.php';
+include '../mysql.php';
 
-$start = array(10,15,5,13,5);
-$dur = array(10,10,10,5,20);
-$expected = array(true,false,false,true,false);
+$start = array(10,15,5,13,5,25,22,30,35,37,30,37,42,35);
+$dur = array(10,10,10,5,20,7,6,3,5,2,7,5,3,6);
+$expected = array(1,false,false,1,false,false,false,1,true,true,1,false,false,2);
 
-for ($i = 0; $i < count($start); $i++) {
+for ($i = 0; $i < count($dur); $i++) {
     $startTime = $start[$i];
     $endTime = $startTime + $dur[$i];
     $query = "
@@ -22,8 +22,8 @@ for ($i = 0; $i < count($start); $i++) {
         echo "ERROR " . $i . ": " . $conn->error . "\n";
         continue;
     }
-    $outcome = ($res->fetch_row() != null);
-    if ($outcome === $expected[$i]) {
+    $outcome = $res->fetch_row();
+    if (($outcome == null && $expected[$i] == false) || ($outcome != null && $outcome[0] == $expected[$i]) || ($outcome != null && $expected[$i] === true)) {
         echo "Ok\n";
     }
     else {
