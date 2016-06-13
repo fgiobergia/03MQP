@@ -2,6 +2,22 @@ var redColor   = '#ff9999';
 var greenColor = '#19ff19';
 var borderInfo = '2px solid ';
 
+function passwordHandler () {
+    var pass1 = $('#pass1').val();
+    var pass2 = $('#pass2').val();
+    if (pass1.length > 0 || pass2.length > 0) {
+        if (pass1 === pass2) {
+            $('.password').css('border', borderInfo + greenColor);
+        }
+        else {
+            $('.password').css('border', borderInfo + redColor);
+        }
+    }
+    else {
+        $('.password').css('border', '');
+    }
+}
+
 function testEmail (email) {
     /* coarse regex: may only match a subset of 
         * valid emails - for a stricter one, use google
@@ -45,3 +61,19 @@ function timeHandler () {
         }
     }
 }
+
+function validDuration (duration) {
+    return (!isNaN(duration) && parseInt(duration) >= 1 && parseInt(duration) <= 1440);
+}
+
+function durationHandler () {
+    var duration = $('#duration').val();
+    if (duration.length > 0) {
+        if (!validDuration(duration)) {
+            $('#duration').css('border', borderInfo + redColor);
+            return ;
+        }
+    }
+    $('#duration').css('border','');
+}
+

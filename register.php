@@ -4,7 +4,7 @@ include 'includes.php';
 $session = new Session();
 if ($session->isValid()) {
     // nothing to do here, go to index.html
-    redirect ("account.php");
+    redirect ("book.php");
 }
 
 ?>

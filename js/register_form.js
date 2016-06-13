@@ -7,21 +7,7 @@ $(document).ready(function() {
     $('#email').change(emailHandler);
     
 
-    $('.password').keyup(function() {
-        var pass1 = $('#pass1').val();
-        var pass2 = $('#pass2').val();
-        if (pass1.length > 0 || pass2.length > 0) {
-            if (pass1 === pass2) {
-                $('.password').css('border', borderInfo + greenColor);
-            }
-            else {
-                $('.password').css('border', borderInfo + redColor);
-            }
-        }
-        else {
-            $('.password').css('border', '');
-        }
-    });
+    $('.password').keyup(passwordHandler);
 
     $('#send').click(function () {
         var first = $('#first').val();

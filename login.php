@@ -4,7 +4,7 @@ include 'includes.php';
 
 $session = new Session();
 if ($session->isValid()) {
-    redirect("account.php");
+    redirect("book.php");
 }
 
 
@@ -21,7 +21,7 @@ if ($res !== false) {
         die ("Nope");
     }
     $session = new Session(true);
-    redirect("account.php");
+    redirect("book.php");
 }
 
 ?>

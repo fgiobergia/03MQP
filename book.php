@@ -16,15 +16,14 @@ if (!$session->isValid()) {
     <link rel = 'stylesheet' type = 'text/css' href = 'css/style.css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src = 'js/handlers.js'></script>
-    <script src = 'js/account_form.js'></script>
+    <script src = 'js/book_form.js'></script>
   </head>
   <body>
     <div id = 'header' class = 'banner'>
 <?php echo $websiteName; ?>
     </div>
     <div id = 'main_content'>
-        <form action = 'login.php' method = 'POST' id = 'login_form'>
-            <span>New booking</span>
+        <form action = 'bookMachine.php' method = 'POST' id = 'book_form'>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Starting time</label>
                 <input class = 'form_cell' type = 'time' id = 'start_time' name = 'start_time' placeholder = '00:00' />
