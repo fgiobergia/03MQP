@@ -26,3 +26,9 @@ CREATE TABLE BOOKINGS (
     CONSTRAINT totalTime_limit CHECK (StartTime + Duration < 1440) -- assuming a reservation cannot span on multiple days
 ); 
 
+CREATE TABLE TOKENS (
+    UId INTEGER NOT NULL, 
+    Token VARCHAR(32) NOT NULL, 
+    Expiration INTEGER NOT NULL,
+    PRIMARY KEY (UId, Token)
+);

@@ -52,7 +52,7 @@ if (!empty ($msg)) {
                 <input class = 'form_cell' type = 'time' id = 'start_time' name = 'start_time' placeholder = '00:00' />
             </div>
             <div class = 'form_row'>
-                <label class = 'form_cell'>Duration</label>
+                <label class = 'form_cell'>Duration (min)</label>
                 <input class = 'form_cell' type = 'number' min = '0' max = '1440' id = 'duration' name = 'duration'  />
             </div>
             <div class = 'form_row'>
@@ -68,19 +68,35 @@ if (!empty ($msg)) {
                 <span class = 'list_cell'>Duration</span>
                 <span class = 'list_cell'>Unbook</span>
             </div>
+<?php
+$token = md5(rand().rand().rand()); // hash the number to make it fancier (also, standard length)
+$query = "DELETE FROM TOKENS WHERE Expiration < " . time();
+$conn->query($query);
+$query = "INSERT INTO TOKENS (UId, Token, Expiration) VALUES ({$uid},'{$token}',".(time()+$expirationTime).")";
+$conn->query($query);
+
+$query = "SELECT M.MId, Name, StartTime, Duration FROM BOOKINGS B, MACHINES M WHERE B.MId = M.MId AND UId = '{$uid}'";
+$res = $conn->query($query);
+if ($res !== false) {
+    while ($row = $res->fetch_row()) {
+        list ($mid, $name, $start, $duration) = $row;
+        $start = intval($start);
+        $duration = intval($duration);
+        $startTime = minutesToString($start);
+        $endTime = minutesToString($start + $duration);
+        $durationStr = minutesToString ($duration,'h,m');
+?>
             <div class = 'list_row'>
-                <span class = 'list_cell'>Machine 1</span>
-                <span class = 'list_cell'>03:30</span>
-                <span class = 'list_cell'>03:40</span>
-                <span class = 'list_cell'>20m</span>
-                <span class = 'list_cell unbook'>x</span>
+                <span class = 'list_cell'><?php echo $name; ?></span>
+                <span class = 'list_cell'><?php echo $startTime; ?></span>
+                <span class = 'list_cell'><?php echo $endTime; ?></span>
+                <span class = 'list_cell'><?php echo $durationStr; ?></span>
+                <span class = 'list_cell unbook'><a href = '<?php echo "delete.php?mid={$mid}&start={$start}&csrf={$token}"; ?>'>x</a></span>
             </div>
-            <div class = 'list_row'>
-                <span class = 'list_cell'>Machine 1</span>
-                <span class = 'list_cell'>03:30</span>
-                <span class = 'list_cell'>03:40</span>
-                <span class = 'list_cell'>20m</span>
-            </div>
+<?php
+    }
+}
+?>
         </div>
     </div>
     <div id = 'footer' class = 'banner'>
