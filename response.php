@@ -43,4 +43,8 @@ $json['deleteList'] = $deleteList;
 $json['timestamp'] = time();
 
 echo json_encode($json,(isset($_GET['pretty']))? JSON_PRETTY_PRINT : 0);
+
+// delete cancellations that are older than 6 hours
+$query = "DELETE FROM CANCELLATIONS WHERE Timestamp + 6*60*60 < " . time();
+$conn->query($query);
 ?>
