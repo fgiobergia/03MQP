@@ -15,3 +15,4 @@ Extra:
 E1 style buttons
 E2 add logout option
 E3 lose the footer
+E4 show (static) table of reservations to users not using JS

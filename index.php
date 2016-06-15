@@ -22,7 +22,7 @@ if ($session->isValid()) {
   </head>
   <body>
     <div id = 'header' class = 'banner'>
-<?php echo $websiteName; ?>
+<?php echo $linkToHome; ?>
     </div>
 <?php
 $msg = '';
@@ -49,11 +49,11 @@ if (!empty($msg)) {
         <form action = 'login.php' method = 'POST' id = 'login_form'>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Email address</label>
-                <input class = 'form_cell' type = 'text' id = 'email' name = 'email' />
+                <input title = 'The email address of an already existing account' class = 'form_cell' type = 'text' id = 'email' name = 'email' />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Password</label>
-                <input class = 'form_cell password' type = 'password' id = 'pass' name = 'pass' />
+                <input title = 'The password paired with your email address for this account' class = 'form_cell password' type = 'password' id = 'pass' name = 'pass' />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'></label>

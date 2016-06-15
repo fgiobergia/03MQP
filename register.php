@@ -21,7 +21,7 @@ if ($session->isValid()) {
   </head>
   <body>
     <div id = 'header' class = 'banner'>
-<?php echo $websiteName; ?>
+<?php echo $linkToHome; ?>
     </div>
 <?php
 if (isset($_GET['error'])) {
@@ -36,23 +36,23 @@ if (isset($_GET['error'])) {
         <form action = 'registerUser.php' method = 'POST' id = 'register_form'>
             <div class = 'form_row'>
                 <label class = 'form_cell'>First name</label>
-                <input class = 'form_cell' type = 'text' name = 'first' id = 'first' />
+                <input title = 'Your first name' class = 'form_cell' type = 'text' name = 'first' id = 'first' />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Last name</label>
-                <input class = 'form_cell' type = 'text' name = 'last' id = 'last' />
+                <input title = 'Your last name' class = 'form_cell' type = 'text' name = 'last' id = 'last' />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Email address</label>
-                <input class = 'form_cell' type = 'text' id = 'email' name = 'email' />
+                <input title = 'A valid email address. This will be your username' class = 'form_cell' type = 'text' id = 'email' name = 'email' />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Password</label>
-                <input class = 'form_cell password' type = 'password' id = 'pass1' name = 'pass1' />
+                <input title = 'A secret password that will be required upon login' class = 'form_cell password' type = 'password' id = 'pass1' name = 'pass1' />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Password (again)</label>
-                <input class = 'form_cell password' type = 'password'  id = 'pass2' name = 'pass2' />
+                <input title = 'The same password as before. Just making sure you typed it right' class = 'form_cell password' type = 'password'  id = 'pass2' name = 'pass2' />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'></label>

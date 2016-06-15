@@ -38,7 +38,7 @@ $conn->query($query);
   </head>
   <body>
     <div id = 'header' class = 'banner'>
-<?php echo $websiteName; ?>
+<?php echo $linkToHome; ?>
     </div>
 <?php
 $msg = '';
@@ -72,11 +72,11 @@ if (!empty ($msg)) {
             <input type = 'hidden' name = 'csrf' value = '<?php echo $token; ?>'>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Starting time</label>
-                <input class = 'form_cell' type = 'time' id = 'start_time' name = 'start_time' placeholder = '00:00' />
+                <input title = 'Start time. May be a value between 00:00 and 23:59' class = 'form_cell' type = 'time' id = 'start_time' name = 'start_time' placeholder = '00:00' />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Duration</label>
-                <input class = 'form_cell' type = 'number' min = '1' max = '1440' id = 'duration' name = 'duration'  />
+                <input title = 'Duration, in minutes (between 1 and 1440)' class = 'form_cell' type = 'number' min = '1' max = '1440' id = 'duration' name = 'duration'  />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'></label>
