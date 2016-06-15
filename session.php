@@ -1,13 +1,18 @@
 <?php
 
-
 class Session {
-    private $valid;
+    private $valid, $hasCookies, $firstName;
 
-    public function __construct ($forceNew = false, $uid = -1) {
+    public function __construct ($forceNew = false, $uid = -1, $testCookies = false) {
         global $expirationTime;
         $this->valid = false;
+        $this->hasCookies = true;
         session_start();
+
+        /* only testing when the user is supposed to have cookies! */
+        if ($testCookies == true) {
+            $this->hasCookies = isset($_COOKIE[session_name()]);
+        }
 
         /*
          * renew session if either $forceNew == true (should only be true when user logs in successfully) or
@@ -17,7 +22,7 @@ class Session {
             $_SESSION['valid'] = true;
             $_SESSION['expires'] = time() + $expirationTime; // renew session expiration time
 
-            // if login time, also store the UId for later retrieval
+            // if it's login time, also store the UId for later retrieval
             if ($uid != -1) {
                 $_SESSION['uid'] = $uid;
             }
@@ -39,6 +44,25 @@ class Session {
             return intval($_SESSION['uid']);
         }
         return -1;
+    }
+
+    public function hasCookies() {
+        return $this->hasCookies;
+    }
+
+    public function getFirstName() {
+        global $conn;
+        if (empty($this->firstName)) {
+            $query = "SELECT FirstName FROM USERS WHERE UId = ".$this->getUId();
+            $res = $conn->query($query);
+            if ($res !== false) {
+                $row = $res->fetch_row();
+                if ($row !== null) {
+                    $this->firstName = htmlentities($row[0]);
+                }
+            }
+        }
+        return $this->firstName;
     }
 
 }

@@ -15,6 +15,7 @@ if ($session->isValid()) {
     <title><?php echo $websiteName; ?></title>
     <link rel = 'stylesheet' type = 'text/css' href = 'css/style.css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src = 'js/convert.js'></script>
     <script src = 'js/handlers.js'></script>
     <script src = 'js/login_form.js'></script>
     <script src = 'js/reservations.js'></script>
@@ -35,12 +36,15 @@ else if (isset($_GET['fail'])) {
 }
 if (!empty($msg)) {
 ?>
-    <div class = '<?php echo $div; ?>'>
+    <div class = 'message <?php echo $div; ?>'>
         <?php echo $msg; ?>
     </div>
 <?php
 }
 ?>
+    <noscript>
+        <div class = 'message notice'>This website uses JavaScript. Disabling it may affect your experience.</div>
+    </noscript>
     <div id = 'main_content'>
         <form action = 'login.php' method = 'POST' id = 'login_form'>
             <div class = 'form_row'>
@@ -53,7 +57,7 @@ if (!empty($msg)) {
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'></label>
-                <input class = 'form_cell' type = 'button' id = 'send' value = 'Login'/>
+                <input class = 'form_cell' type = 'submit' id = 'send' value = 'Login'/>
                 <span id = 'register_link'>(or <a href = 'register.php'>register</a>)</span>
             </div>
         </form>

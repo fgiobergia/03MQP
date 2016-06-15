@@ -1,14 +1,22 @@
 <?php
 include 'includes.php';
 
-$session = new Session();
+$session = new Session(false,-1,isset($_GET['welcome']));
+
+if (!$session->hasCookies()) {
+    die ("This website requires <b>cookies</b>. ");
+}
+
 if (!$session->isValid()) {
     // not logged in, or session has expired!
     redirect ();
 }
-$uid = $session->getUId();
 
-//$uid = 1;
+if (!$session->hasCookies()) {
+    die ("This website requires <b>cookies</b>. ");
+}
+
+$uid = $session->getUId();
 
 $token = md5(rand().rand().rand()); // hash the number to make it fancier (also, standard length)
 $query = "DELETE FROM TOKENS WHERE Expiration < " . time();
@@ -23,6 +31,7 @@ $conn->query($query);
     <title><?php echo $websiteName; ?></title>
     <link rel = 'stylesheet' type = 'text/css' href = 'css/style.css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src = 'js/convert.js'></script>
     <script src = 'js/handlers.js'></script>
     <script src = 'js/book_form.js'></script>
     <script src = 'js/reservations.js'></script>
@@ -45,12 +54,19 @@ else if (isset($_GET['success'])) {
     $msg = 'Action performed successfully';
     $div = 'success';
 }
+else if (isset($_GET['welcome'])) {
+    $msg = "Welcome back, {$session->getFirstName()}";
+    $div = 'success';
+}
 if (!empty ($msg)) {
 ?>
-    <div class = '<?php echo $div; ?>'><?php echo $msg; ?></div>
+    <div class = 'message <?php echo $div; ?>'><?php echo $msg; ?></div>
 <?php
 }
 ?>
+    <noscript>
+        <div class = 'message notice'>This website uses JavaScript. Disabling it may affect your experience.</div>
+    </noscript>
     <div id = 'main_content'>
         <form action = 'bookMachine.php' method = 'POST' id = 'book_form'>
             <input type = 'hidden' name = 'csrf' value = '<?php echo $token; ?>'>
@@ -59,12 +75,12 @@ if (!empty ($msg)) {
                 <input class = 'form_cell' type = 'time' id = 'start_time' name = 'start_time' placeholder = '00:00' />
             </div>
             <div class = 'form_row'>
-                <label class = 'form_cell'>Duration (min)</label>
+                <label class = 'form_cell'>Duration</label>
                 <input class = 'form_cell' type = 'number' min = '1' max = '1440' id = 'duration' name = 'duration'  />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'></label>
-                <input class = 'form_cell' type = 'button' id = 'send' value = 'Book'/>
+                <input class = 'form_cell' type = 'submit' id = 'send' value = 'Book'/>
             </div>
         </form>
         <div class = 'table_title'>

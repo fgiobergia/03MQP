@@ -18,10 +18,10 @@ if ($res !== false) {
     $row = $res->fetch_row();
     if ($row == null) {
         // login failed!
-        die ("index.php?fail");
+        redirect("index.php?fail");
     }
     $session = new Session(true,$row[0]);
-    redirect("book.php");
+    redirect("book.php?welcome");
 }
 header ("index.php");
 

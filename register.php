@@ -15,6 +15,7 @@ if ($session->isValid()) {
     <title><?php echo $websiteName; ?></title>
     <link rel = 'stylesheet' type = 'text/css' href = 'css/style.css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src = 'js/convert.js'></script>
     <script src = 'js/handlers.js'></script>
     <script src = 'js/register_form.js'></script>
   </head>
@@ -55,7 +56,7 @@ if (isset($_GET['error'])) {
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'></label>
-                <input class = 'form_cell' type = 'button' id = 'send' value = 'Register'/>
+                <input class = 'form_cell' type = 'submit' id = 'send' value = 'Register'/>
             </div>
         </form>
     </div>
