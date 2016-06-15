@@ -25,8 +25,23 @@ function minutesToString ($offset, $mode = 'hh:mm') {
             break;
         default:
             $format = "%02d:%02d"; 
+            $hh = ($hh > 23) ? $hh - 24 : $hh;
             break;
     }
     return sprintf ($format, $hh, $mm);
 }
 
+function validToken ($uid, $token) {
+    global $conn;
+    if (preg_match("/^[a-f\d]{32}$/", $token) === false) {
+        return false;
+    }
+    $uid = intval($uid); // should be a number stored in a session, but converting to int just in case
+    $query = "SELECT UId FROM TOKENS WHERE UId = {$uid} AND Token = '{$token}' AND Expiration >= ".time();
+    $res = $conn->query($query);
+    if ($res === false) {
+        return false;
+    }
+    $row = $res->fetch_row();
+    return $row != null;
+}

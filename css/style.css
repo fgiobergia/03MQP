@@ -2,6 +2,7 @@ body {
     /* remove margins - for header & footer */
     margin: 0px;
     font-family: Georgia;
+    color: #555;
 }
 
 div#main_content {
@@ -83,12 +84,12 @@ span#register_link a {
     color: #555;
 }
 
-div#previous_bookings {
+div.reservations {
     display: table;
     width: 100%;
 }
 
-div#head_row span {
+div.head_row span {
     font-weight: bold;
     padding: .5em 0;
     background-color: rgb(240,240,240);
@@ -114,3 +115,12 @@ span.unbook a {
 span.unbook a:hover {
     text-decoration: underline;
 }
+
+div.table_title {
+    width: 100%;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 1em 0 .5em 0;
+}
+

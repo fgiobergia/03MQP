@@ -1,15 +1,20 @@
 <?php
 include 'includes.php';
-/*
+
 $session = new Session();
 if (!$session->isValid()) {
     // not logged in, or session has expired!
     redirect ();
 }
 $uid = $session->getUId();
-*/
-$uid = 1;
 
+//$uid = 1;
+
+$token = md5(rand().rand().rand()); // hash the number to make it fancier (also, standard length)
+$query = "DELETE FROM TOKENS WHERE Expiration < " . time();
+$conn->query($query);
+$query = "INSERT INTO TOKENS (UId, Token, Expiration) VALUES ({$uid},'{$token}',".(time()+$expirationTime).")";
+$conn->query($query);
 // valid session, yay!
 ?>
 <!doctype html>
@@ -20,6 +25,7 @@ $uid = 1;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src = 'js/handlers.js'></script>
     <script src = 'js/book_form.js'></script>
+    <script src = 'js/reservations.js'></script>
   </head>
   <body>
     <div id = 'header' class = 'banner'>
@@ -32,11 +38,11 @@ if (isset($_GET['error'])) {
     $div = 'error';
 }
 else if (isset($_GET['overlap'])) {
-    $msg = 'Your booking would not fit the current schedule. Please try with a different time slot!';
+    $msg = 'Your reservation would not fit the current schedule. Please try with a different time slot!';
     $div = 'error';
 }
 else if (isset($_GET['success'])) {
-    $msg = 'Time slot booked successfully!';
+    $msg = 'Action performed successfully';
     $div = 'success';
 }
 if (!empty ($msg)) {
@@ -47,6 +53,7 @@ if (!empty ($msg)) {
 ?>
     <div id = 'main_content'>
         <form action = 'bookMachine.php' method = 'POST' id = 'book_form'>
+            <input type = 'hidden' name = 'csrf' value = '<?php echo $token; ?>'>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Starting time</label>
                 <input class = 'form_cell' type = 'time' id = 'start_time' name = 'start_time' placeholder = '00:00' />
@@ -60,22 +67,20 @@ if (!empty ($msg)) {
                 <input class = 'form_cell' type = 'button' id = 'send' value = 'Book'/>
             </div>
         </form>
-        <div id = 'previous_bookings'>
-            <div class = 'list_row' id = 'head_row'>
+        <div class = 'table_title'>
+            Your reservations
+        </div>
+        <div class = 'reservations'>
+            <div class = 'list_row head_row'>
                 <span class = 'list_cell'>Machine</span>
                 <span class = 'list_cell'>Start Time</span>
                 <span class = 'list_cell'>End Time</span>
                 <span class = 'list_cell'>Duration</span>
-                <span class = 'list_cell'>Unbook</span>
+                <span class = 'list_cell'>Cancel</span>
             </div>
 <?php
-$token = md5(rand().rand().rand()); // hash the number to make it fancier (also, standard length)
-$query = "DELETE FROM TOKENS WHERE Expiration < " . time();
-$conn->query($query);
-$query = "INSERT INTO TOKENS (UId, Token, Expiration) VALUES ({$uid},'{$token}',".(time()+$expirationTime).")";
-$conn->query($query);
 
-$query = "SELECT M.MId, Name, StartTime, Duration FROM BOOKINGS B, MACHINES M WHERE B.MId = M.MId AND UId = '{$uid}'";
+$query = "SELECT M.MId, Name, StartTime, Duration FROM RESERVATIONS R, MACHINES M WHERE R.MId = M.MId AND UId = '{$uid}' ORDER BY StartTime";
 $res = $conn->query($query);
 if ($res !== false) {
     while ($row = $res->fetch_row()) {
@@ -91,12 +96,23 @@ if ($res !== false) {
                 <span class = 'list_cell'><?php echo $startTime; ?></span>
                 <span class = 'list_cell'><?php echo $endTime; ?></span>
                 <span class = 'list_cell'><?php echo $durationStr; ?></span>
-                <span class = 'list_cell unbook'><a href = '<?php echo "delete.php?mid={$mid}&start={$start}&csrf={$token}"; ?>'>x</a></span>
+                <span class = 'list_cell unbook'><a href = '<?php echo "cancel.php?mid={$mid}&start={$start}&csrf={$token}"; ?>'>x</a></span>
             </div>
 <?php
     }
 }
 ?>
+        </div>
+        <div class = 'table_title'>
+            List of reservations
+        </div>
+        <div class = 'reservations'> 
+            <div class = 'list_row head_row'>
+                <span class = 'list_cell'>Machine</span>
+                <span class = 'list_cell'>Start Time</span>
+                <span class = 'list_cell'>End Time</span>
+                <span class = 'list_cell'>Duration</span>
+            </div>
         </div>
     </div>
     <div id = 'footer' class = 'banner'>

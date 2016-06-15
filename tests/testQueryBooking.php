@@ -13,7 +13,7 @@ for ($i = 0; $i < count($dur); $i++) {
     FROM MACHINES
     WHERE MId NOT IN (
         SELECT MId
-        FROM BOOKINGS
+        FROM RESERVATIONS
         WHERE StartTime < {$endTime}
         AND StartTime + Duration > {$startTime})
     LIMIT 1";

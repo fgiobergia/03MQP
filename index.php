@@ -17,6 +17,7 @@ if ($session->isValid()) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src = 'js/handlers.js'></script>
     <script src = 'js/login_form.js'></script>
+    <script src = 'js/reservations.js'></script>
   </head>
   <body>
     <div id = 'header' class = 'banner'>
@@ -47,6 +48,18 @@ if (isset($_GET['success'])) {
                 <span id = 'register_link'>(or <a href = 'register.php'>register</a>)</span>
             </div>
         </form>
+        <div class = 'table_title'>
+            List of reservations
+        </div>
+        <div class = 'reservations'> 
+            <div class = 'list_row head_row'>
+                <span class = 'list_cell'>Machine</span>
+                <span class = 'list_cell'>Start Time</span>
+                <span class = 'list_cell'>End Time</span>
+                <span class = 'list_cell'>Duration</span>
+            </div>
+        </div>
+
     </div>
     <div id = 'footer' class = 'banner'>
 <?php
