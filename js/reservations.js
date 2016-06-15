@@ -6,7 +6,7 @@ $(document).ready(function() {
     }
 
     function updateTable () {
-        $.ajax('getStuff.php?t=' + timestamp)
+        $.ajax('response.php?t=' + timestamp)
         .done(function(data) {
             var insertList = $.each(data.insertList, function (k,v) { v.type = 'insert'; });
             var deleteList = $.each(data.deleteList, function (k,v) { v.type = 'delete'; });
