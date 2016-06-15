@@ -9,12 +9,12 @@ $(document).ready(function() {
         console.log(timestamp);
         $.ajax('getStuff.php?t=' + timestamp)
         .done(function(data) {
-            timestamp = data.timestamp;
             var insertList = $.each(data.insertList, function (k,v) { v.type = 'insert'; });
             var deleteList = $.each(data.deleteList, function (k,v) { v.type = 'delete'; });
             var list = insertList.concat(deleteList).sort(ordTimestamp);
             console.log(list);
             $.each(list,function(key,obj) {
+                timestamp = data.timestamp; // only update timestamp when there's actually something (in case it misses something for some reason!
                 if (obj.type == 'insert') {
                     var el = $("<div class = 'list_row book_row' id = 'book_"+obj.mid+"_"+obj.start+"'>"+
                                "<span class = 'list_cell'>"+obj.machineName+"</span>"+
@@ -41,9 +41,10 @@ $(document).ready(function() {
                         }
                     }
                 }
-                else {
+                else if (obj.type == 'delete') {
                     // delete
                     // jQuery doesn't handle colons well
+                    console.log('remove! book_'+obj.mid+'_'+obj.start);
                     $(document.getElementById('book_'+obj.mid+'_'+obj.start)).remove();
                 }
             });

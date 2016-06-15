@@ -1,0 +1,15 @@
+TODO
+Required:
+-> check 60 seconds constraint (already implemented, remove if needed)
+-> # of machines set to 4, may be changed via a single variable
+-> create users and reservations required
+-> make HTTPS mandatory
+-> show error if cookies are not available
+-> show message if javascript is not available
+-> have server delete old information regarding CANCELLATIONS
+-> test success of all db functions
+
+Extra:
+-> style buttons
+-> add logout option
+-> lose the footer
