@@ -60,7 +60,7 @@ if (!empty ($msg)) {
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'>Duration (min)</label>
-                <input class = 'form_cell' type = 'number' min = '0' max = '1440' id = 'duration' name = 'duration'  />
+                <input class = 'form_cell' type = 'number' min = '1' max = '1440' id = 'duration' name = 'duration'  />
             </div>
             <div class = 'form_row'>
                 <label class = 'form_cell'></label>

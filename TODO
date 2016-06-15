@@ -2,7 +2,7 @@ TODO
 Required:
 R1 check 60 seconds constraint (already implemented, remove if needed)
 R2 # of machines set to 4, may be changed via a single variable
-R3 create users and reservations required
+* R3 create users and reservations required
 R4 make HTTPS mandatory
 R5 show error if cookies are not available
 R6 show message if javascript is not available

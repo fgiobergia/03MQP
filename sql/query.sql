@@ -17,7 +17,7 @@ CREATE TABLE RESERVATIONS (
     MId INTEGER NOT NULL,
     StartTime INTEGER NOT NULL, -- num. of minutes since 00:00
     Duration INTEGER NOT NULL, -- duration, in minutes
-    Timestamp INTEGER DEFAULT 0,
+    Timestamp INTEGER DEFAULT 1, -- so that asking for t = 0 returns this result as well
     PRIMARY KEY (MId, StartTime),
     FOREIGN KEY (UId) REFERENCES USERS(UId),
     FOREIGN KEY (MId) REFERENCES MACHINES(MId)
