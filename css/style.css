@@ -1,5 +1,5 @@
 body {
-    /* remove margins - for header & footer */
+    /* remove margins - for the header */
     margin: 0px;
     font-family: Georgia;
     color: #555;
@@ -26,14 +26,6 @@ div#header {
 div.banner a, a:visited {
     text-decoration: none;
     color: #555;
-}
-
-
-div#footer {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
 }
 
 form {
@@ -63,6 +55,13 @@ input[type=text].form_cell, input[type=password].form_cell {
     border: 1px solid rgb(120,120,120);
 }
 
+input[type=submit], input[type=button] {
+    background-color: rgb(240,240,240);
+    border: 1px solid #555;
+    color: #555;
+    padding: .35em .8em;
+}
+
 div.message{ 
     width: 600px;
     margin: 1em auto;
@@ -90,8 +89,12 @@ span#register_link {
     padding: 0 .5em;
 }
 
-span#register_link a {
+span#register_link a a:visited {
     color: #555;
+}
+
+span#register_link a:hover {
+    text-decoration: none;
 }
 
 div.reservations {
@@ -113,6 +116,7 @@ div.list_row {
 
 span.list_cell {
     display: table-cell;
+    padding: .3em 0;
 }
 
 span.unbook a {

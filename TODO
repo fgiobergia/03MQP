@@ -9,10 +9,10 @@ Required:
 * R7 have server delete old information regarding CANCELLATIONS
 * R8 test success of all db functions
 * R9 make sure JS doesn't fuck up if ajax req. fail
-R10 provide description for every field in a form 
+* R10 provide description for every field in a form 
 
 Extra:
-E1 style buttons
-E2 add logout option
-E3 lose the footer
-E4 show (static) table of reservations to users not using JS
+* E1 style buttons
+x E2 add logout option
+* E3 lose the footer
+* E4 show (static) table of reservations to users not using JS

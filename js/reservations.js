@@ -1,5 +1,5 @@
+var timestamp = 0;
 $(document).ready(function() {
-    var timestamp = 0;
     
     function ordTimestamp (a, b) {
         return a.timestamp - b.timestamp;
@@ -51,6 +51,6 @@ $(document).ready(function() {
 
     }
 
-    updateTable();
+//    updateTable();
     setInterval(updateTable,5000);
 });

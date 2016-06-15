@@ -60,10 +60,5 @@ if (isset($_GET['error'])) {
             </div>
         </form>
     </div>
-    <div id = 'footer' class = 'banner'>
-<?php
-include 'footer.html';
-?>
-    </div>
   </body>
 </html>

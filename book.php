@@ -129,12 +129,10 @@ if ($res !== false) {
                 <span class = 'list_cell'>End Time</span>
                 <span class = 'list_cell'>Duration</span>
             </div>
-        </div>
-    </div>
-    <div id = 'footer' class = 'banner'>
 <?php
-include 'footer.html';
+include 'static.php';
 ?>
+        </div>
     </div>
   </body>
 </html>

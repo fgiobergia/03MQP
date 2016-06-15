@@ -71,13 +71,11 @@ if (!empty($msg)) {
                 <span class = 'list_cell'>End Time</span>
                 <span class = 'list_cell'>Duration</span>
             </div>
+<?php
+include 'static.php';
+?>
         </div>
 
-    </div>
-    <div id = 'footer' class = 'banner'>
-<?php
-include 'footer.html';
-?>
     </div>
   </body>
 </html>
