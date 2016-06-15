@@ -8,6 +8,7 @@ R5 show error if cookies are not available
 R6 show message if javascript is not available
 R7 have server delete old information regarding CANCELLATIONS
 R8 test success of all db functions
+R9 make sure JS doesn't fuck up if ajax req. fail
 
 Extra:
 E1 style buttons
