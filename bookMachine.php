@@ -41,12 +41,18 @@ WHERE MId NOT IN (
     WHERE StartTime < $endTime
     AND StartTime + Duration > $startTime)
 LIMIT 1";
-$conn->query($query);
+$res = $conn->query($query);
+/* first test whether the query is successful */
+if ($res === false) {
+    redirect ("book.php?error");
+}
+
+/* then make sure that exactly 1 entry has been added */
 if ($conn->affected_rows == 1) {
     // success!
     redirect ("book.php?success");
 }
-else {
+else { // if not, there was no machine available!
     redirect ("book.php?overlap");
 }
 ?>

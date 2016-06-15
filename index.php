@@ -24,10 +24,19 @@ if ($session->isValid()) {
 <?php echo $websiteName; ?>
     </div>
 <?php
+$msg = '';
 if (isset($_GET['success'])) {
+    $msg = 'Operation carried out successfully!';
+    $div = 'success';
+}
+else if (isset($_GET['fail'])) {
+    $msg = 'Wrong username/password combination';
+    $div = 'error';
+}
+if (!empty($msg)) {
 ?>
-    <div class = 'success'>
-        Operation carried out successfully!
+    <div class = '<?php echo $div; ?>'>
+        <?php echo $msg; ?>
     </div>
 <?php
 }
